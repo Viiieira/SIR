@@ -1,9 +1,9 @@
 <!-- FontAwesome Free 6.2.0 -->
-    <link rel="stylesheet" href="../fontawesome-free-6.2.0-web/css/fontawesome.css">
-    <link rel="stylesheet" href="../fontawesome-free-6.2.0-web/css/brands.css">
-    <link rel="stylesheet" href="../fontawesome-free-6.2.0-web/css/solid.css">
+    <link rel="stylesheet" href="../../assets/libs/fontawesome-free-6.2.0-web/css/fontawesome.css">
+    <link rel="stylesheet" href="../../assets/libs/fontawesome-free-6.2.0-web/css/brands.css">
+    <link rel="stylesheet" href="../../assets/libs/fontawesome-free-6.2.0-web/css/solid.css">
     <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="../styles/bootstrap.min.css" />
-    <link rel="stylesheet" href="../styles/main.css" />
+    <link rel="stylesheet" href="../../assets/styles/bootstrap.min.css" />
+    <link rel="stylesheet" href="../../assets/styles/main.css" />
     <!-- Light Theme Checker OnLoad -->
-    <script src="../scripts/onload.js"></script>
+    <script src="../../assets/scripts/onload.js"></script>

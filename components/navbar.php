@@ -14,7 +14,7 @@ $user = $result->fetch_assoc();
     <div class="navbar-section navbar-title"><?php echo $role['name']; ?></div>
     <div class="navbar-section navbar-user">
         <div class="navbar-dropdown" id="navbar-dropdown">
-            <img src="<?php echo $user['imgPath']; ?>" class="navbar-img" alt=""> 
+            <img src="../../assets/images/<?php echo $user['imgPath']; ?>" class="navbar-img" alt=""> 
             <div class="navbar-dropdown-title"><?php echo $_SESSION['username']; ?></div>
             <i class="fa-regular fa-chevron-down"></i>
         </div>

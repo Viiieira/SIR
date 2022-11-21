@@ -14,14 +14,14 @@ if(isset($_SESSION['id']) && $_SESSION['username']) {
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login</title>
-    <?php  require_once('../includes/head_links.php'); ?>
+    <?php require_once('../../components/head_links.php') ?>
 </head>
 <body>
 
 <div id="form-wrapper">
     <div class="form-container">
         <div class="form-brand">Portfolio</div>
-        <form action="../includes/login.php" method="post" autocomplete="off">
+        <form action="../../server/login.php" method="post" autocomplete="off">
             <div class="form-input">
                 <label for="emailField">
                     E-mail <span class="text-secondary">*</span>
@@ -47,7 +47,7 @@ if(isset($_SESSION['id']) && $_SESSION['username']) {
     </div>
 </div>
 
-<?php require_once('../includes/body_links.php'); ?>
+<?php require_once('../../components/body_links.php'); ?>
 
 </body>
 </html>

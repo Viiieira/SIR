@@ -1,5 +1,5 @@
 <!-- Bootstrap, Popper & Main JS -->
-<script src="../scripts/popper.min.js"></script>
-<script src="../scripts/bootstrap.min.js"></script>
-<script src="../scripts/main.js"></script>
-<script src="../scripts/toggleLight.js"></script>
+<script src="../../assets/scripts/popper.min.js"></script>
+<script src="../../assets/scripts/bootstrap.min.js"></script>
+<script src="../../assets/scripts/main.js"></script>
+<script src="../../assets/scripts/toggleLight.js"></script>

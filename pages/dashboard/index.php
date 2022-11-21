@@ -3,11 +3,11 @@
 // Start the session
 session_start();
 // Require the mysqli connection
-require_once('../includes/config.php');
+require_once('../../config/config.php');
 // Function for logout
-require_once('../includes/logout.php');
+require_once('../../server/logout.php');
 // Utilitary functions
-require_once('../utils/utils.php');
+require_once('../../utils/utils.php');
 
 // No login detected
 if(!isset($_SESSION['id']) && !isset($_SESSION['username'])) {
@@ -34,15 +34,15 @@ if($_SESSION['role'] == 2) {
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Dashboard</title>
-    <?php require_once('../includes/head_links.php'); ?>
+    <?php require_once('../../components/head_links.php'); ?>
 </head>
 <body>
 
 <div id="dashboard-wrapper">
     <div id="dashboard-container">
-        <?php require_once('../includes/sidebar.php'); ?>
+        <?php require_once('../../components/sidebar.php'); ?>
         <main>
-            <?php require_once('../includes/navbar.php'); ?>
+            <?php require_once('../../components/navbar.php'); ?>
             <article id="dashboard">
                 <div class="article-title">Dashboard</div>
             </article>
@@ -50,7 +50,7 @@ if($_SESSION['role'] == 2) {
     </div>
 </div>
 
-<?php require_once('../includes/body_links.php'); ?>
+<?php require_once('../../components/body_links.php'); ?>
 
 </body>
 </html>
