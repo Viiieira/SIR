@@ -13,19 +13,11 @@
     width: 95vw;
     height: 95vh;
     background-color: var(--primary);
-    border-radius: .75rem;
+    border-radius: 1rem;
     box-shadow: var(--shadow);
     font-weight: var(--fw-regular);
     font-size: 1rem;
     color: var(--text-color);
-}
-
-@media screen and (max-width: 425px) {
-    #dashboard-container {
-        width: 100%;
-        height: 100vh;
-        border-radius: 0rem;
-    }
 }
 
 #dashboard-container main {
@@ -43,13 +35,40 @@
     overflow: auto;
 }
 
-@media screen and (max-width: 425px) {
+.article-title {
+    font-size: 1.5rem;
+    color: var(--title-color);
+}
+
+@media screen and (max-width: 1024px) {
     #dashboard-container article {
         padding: 1rem;
     }
+
+    .article-title {
+        font-size: 1.25rem;
+    }
 }
 
-.article-title {
-    font-size: 2rem;
-    color: var(--title-color);
+@media screen and (max-width: 425px) {
+    #dashboard-container {
+        width: 100%;
+        height: 100vh;
+        border-radius: 0rem;
+    }
+
+    #dashboard-container article {
+        padding: 1rem;
+        font-size: 12px;
+    }
+
+    article .article-title { font-size: 1.5rem; }
+}
+
+/* Circular Progress Bar */
+.circular-wrapper {
+    max-width: 300px;
+    padding: 2rem 0;
+    border-radius: 1rem;
+    background-color: var(--primary);
 }

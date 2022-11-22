@@ -27,7 +27,9 @@
         </a>
 
         <?php } } ?>
-    </nav>	
+    </nav>
+    
+    <hr>
 
     <div class="sidebar-tabs">
         <h5 class="sidebar-title">Options</h5>

@@ -3,6 +3,7 @@
     max-width: 300px;
     height: 100%;
     padding: 2rem;
+    padding-top: 1rem;
     display: flex;
     flex-direction: column;
     background-color: var(--primary-darken);
@@ -46,6 +47,7 @@
     flex-grow: 2;
     justify-content: flex-start;
     height: auto;
+    margin: 2rem 0;
 }
 
 .sidebar-title {
@@ -90,7 +92,7 @@ a.sidebar-link:hover .sidebar-link-icon {
 @media screen and (max-width: 1024px) {
     #sidebar {
         width: 90px;
-        padding: 2rem 1rem;
+        padding: 0rem;
     }
 
     .sidebar-link-icon,
@@ -106,6 +108,7 @@ a.sidebar-link:hover .sidebar-link-icon {
 
     #sidebar .sidebar-brand-sm {
         display: inline;
+        max-height: 60px;
     }
 }
 
@@ -114,11 +117,11 @@ a.sidebar-link:hover .sidebar-link-icon {
         border-top-left-radius: 0rem;
         border-bottom-left-radius: 0rem;
         max-width: 60px;
-        padding: 2rem 0;
+        padding: 0;
     }
-}
 
-/* Options */
-.sidebar-tabs:last-child {
-    justify-content: flex-start;
+    #sidebar .sidebar-brand-sm {
+        font-size: 2rem;
+        max-height: 45px;
+    }
 }
