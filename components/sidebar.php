@@ -7,21 +7,22 @@
         <h5 class="sidebar-title">Menu</h5>
         <?php
         // Manager and Admin Section
-        $sqlManagerSection = "SELECT s.section, s.icon FROM tblUser AS u, tblSection AS s, tblManagerSectionAccess AS msa WHERE u.id = msa.idManager AND s.id = msa.idSection AND u.id = " . $_SESSION['id'];
+        $sqlManagerSection = "SELECT s.section, s.icon FROM tblUser AS u, tblSection AS s, tblManagerSectionAccess AS msa WHERE u.id = msa.idManager AND s.id = msa.idSection AND u.id = :id";
         $sqlAdminSection = "SELECT * FROM tblSection";
 
         if($_SESSION['role'] == 1) {
-            $resultSection = $conn->query($sqlAdminSection);
+            $stmt = $conn->prepare($sqlAdminSection);
         } else if ($_SESSION['role'] == 2) {
-            $resultSection = $conn->query($sqlManagerSection);
+            $stmt = $conn->prepare($sqlManagerSection);
+            $stmt->bindParam(':id', $_SESSION['id'], PDO::PARAM_INT);
         }
+        $stmt->execute();
 
-        if($resultSection->num_rows > 0) {
-            while($section = $resultSection->fetch_assoc()) { ?>
+        if($stmt->rowCount() > 0) {
+            while ($section = $stmt->fetch(PDO::FETCH_ASSOC)) { ?>
 
         <a href="../<?php echo strtolower($section['section']); ?>/" class="sidebar-link">
-            <div class="sidebar-link-icon">
-                <i class="fa-regular <?php echo $section['icon']; ?>"></i>
+            <div class="sidebar-link-icon"><i class="fa-regular <?php echo $section['icon']; ?>"></i></i>
             </div>
             <span><?php echo $section['section'] ?></span>
         </a>
@@ -39,7 +40,7 @@
             </div>
             <span id="toggleLightLabel">Light Theme</span>
         </a>
-        <a href="?logout" class="sidebar-link">
+        <a href=" ?logout" class="sidebar-link">
             <div class="sidebar-link-icon">
                 <i class="fa-regular fa-arrow-right-from-bracket"></i>
             </div>

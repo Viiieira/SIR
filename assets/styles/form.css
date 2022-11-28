@@ -13,11 +13,9 @@
     display: flex;
     flex-direction: column;
     gap: 3rem;
-    background-color: var(--primary-darken);
-    border-radius: 10px;
+    background-color: var(--primary-variant);
+    border-radius: var(--rounded-sm);
 }
-
-.light-mode #form-wrapper .form-container { background-color: var(--primary-lighter); }
 
 /* Mobile/Smal devices (600px and down) */
 @media only screen and (max-width: 600px) {
@@ -31,7 +29,7 @@
     font-size: 2.5rem;
     color: var(--title-color);
     font-style: italic;
-    font-weight: bold;
+    font-weight: var(--fw-semibold);
 }
 
 #form-wrapper .form-input {
@@ -54,11 +52,12 @@
     color: var(--title-color);
     font-size: 1.25rem;
     font-size: 1rem;
+    border-radius: var(--rounded-md);
+    transition: all .2s;
 }
 
 #form-wrapper input:hover, #form-wrapper input:focus {
     box-shadow: var(--shadow);
-    border-radius: 4px;
 }
 
 #form-wrapper input:focus {
@@ -69,7 +68,7 @@
     background-color: var(--subtitle-color);
     color: var(--primary);
     padding: 10px 20px;
-    border-radius: 20px;
+    border-radius: var(--rounded-lg);
     border: none;
     cursor: pointer;
     font-size: 1.125rem;

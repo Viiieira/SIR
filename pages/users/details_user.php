@@ -8,8 +8,7 @@ require_once('../../config/config.php');
 require_once('../../server/logout.php');
 // Utilitary functions
 require_once('../../utils/utils.php');
-
-// CRUD User related functions
+// User related functions
 require_once('../../server/users.php');
 
 // No login detected
@@ -29,6 +28,13 @@ if($_SESSION['role'] == 2) {
     }
 }
 
+$sql = "SELECT * FROM tblUser WHERE id = :id";
+$stmt = $conn->prepare($sql);
+$stmt->bindParam(':id', $_GET['id'], PDO::PARAM_INT);
+$stmt->execute();
+$userx = $stmt->fetch(PDO::FETCH_ASSOC);
+
+unset($stmt);
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -47,32 +53,35 @@ if($_SESSION['role'] == 2) {
         <main>
             <?php require_once('../../components/navbar.php'); ?>
             <article id="users">
-                <div class="article-title">Admins</div>
+                <div class="go-back" onclick="window.location.href='./'">
+                    <i class="fa-solid fa-arrow-left"></i>
+                    <span>Go Back</span>
+                </div>
+                <div class="article-title">
+                    <?php echo ($userx['role'] == 1) ? "Admin" : "Manager"; echo " | "; echo $userx['username']; ?>
+                </div>
 
                 <table class="table shadow">
-                    <thead>
-                        <tr>
-                            <th>E-mail</th>
-                            <th>Username</th>
-                            <th>Creation Date</th>
-                            <th colspan="3">Options</th>
-                        </tr>
-                    </thead>
-                    <tbody><?php printUsers($conn, 1); ?></tbody>
-                </table>
-
-                <div class="article-title">Managers</div>
-
-                <table class="table shadow">
-                    <thead>
-                        <tr>
-                            <th>E-mail</th>
-                            <th>Username</th>
-                            <th>Creation Date</th>
-                            <th colspan="3">Options</th>
-                        </tr>
-                    </thead>
-                    <tbody><?php printUsers($conn, 2); ?></tbody>
+                    <tr>
+                        <td>id: </td>
+                        <th><?php echo $userx['id']; ?></td>
+                    </tr>
+                    <tr>
+                        <td>username: </td>
+                        <th><?php echo $userx['username']; ?></td>
+                    </tr>
+                    <tr>
+                        <td>email: </td>
+                        <th><?php echo $userx['email']; ?></td>
+                    </tr>
+                    <tr>
+                        <td>dtCreated: </td>
+                        <th><?php echo date("j F Y, g:i a", strtotime($userx['dtCreated'])) ?></td>
+                    </tr>
+                    <tr>
+                        <td>role: </td>
+                        <th><?php echo ($userx['role'] == 1) ? "Admin" : "Manager"; ?></td>
+                    </tr>
                 </table>
             </article>
         </main>

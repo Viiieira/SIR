@@ -1,17 +1,20 @@
 <?php
 
-$sqlUserRole = "SELECT name FROM tblRole WHERE id=" . $_SESSION['role'];
-$resultUserRole = $conn->query($sqlUserRole);
-$role = $resultUserRole->fetch_assoc();
+$sqlUserRole = "SELECT name FROM tblRole WHERE id = :role";
+$stmt = $conn->prepare($sqlUserRole);
+$stmt->bindParam(':role', $_SESSION['role'], PDO::PARAM_INT);
+$stmt->execute();
+$role = $stmt->fetch(PDO::FETCH_ASSOC);
 
 // Get the information from the user logged in
-$sql = "SELECT * FROM tblUser WHERE id=".$_SESSION['id'];
-$result = $conn->query($sql);
-$user = $result->fetch_assoc();
+$sql = "SELECT * FROM tblUser WHERE id = :id";
+$stmt = $conn->prepare($sql);
+$stmt->bindParam(':id', $_SESSION['id'], PDO::PARAM_INT);
+$stmt->execute();
+$user = $stmt->fetch(PDO::FETCH_ASSOC);
 
 ?>
 <div id="navbar">
-    <div class="navbar-section navbar-title"><?php echo $role['name']; ?></div>
     <div class="navbar-section navbar-user">
         <div class="navbar-dropdown" id="navbar-dropdown">
             <img src="../../assets/images/<?php echo $user['imgPath']; ?>" class="navbar-img" alt=""> 

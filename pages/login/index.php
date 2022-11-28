@@ -6,6 +6,7 @@ if(isset($_SESSION['id']) && $_SESSION['username']) {
     header('Location: ../dashboard/');
     exit();
 }
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
