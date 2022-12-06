@@ -1,6 +1,6 @@
-DROP DATABASE IF EXISTS DBSIR;
-CREATE DATABASE DBSIR;
-USE DBSIR;
+DROP DATABASE IF EXISTS sir_backend_db;
+CREATE DATABASE sir_backend_db;
+USE sir_backend_db;
 
 -- ROLE
 CREATE TABLE tblRole (
@@ -119,3 +119,24 @@ CREATE TABLE tblContact (
     contact         varchar(50),
     icon            varchar(30)
 );
+
+CREATE TABLE tblMessageState (
+    id              int primary key auto_increment,
+    state           varchar(30)
+);
+
+INSERT INTO tblMessageState (state)
+VALUES
+    ("Not read"),
+    ("Read"),
+    ("Spam"),
+    ("See later");
+
+CREATE TABLE tblMessage (
+    id              int primary key auto_increment,
+    email           varchar(100),
+    message         varchar(255),
+    state           int default 1
+    idUserReply     id,
+    foreign key (idUserReply) references tblUser(id)
+); 

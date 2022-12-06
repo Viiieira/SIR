@@ -45,6 +45,14 @@ if($_SESSION['role'] == 2) {
             <?php require_once('../../components/navbar.php'); ?>
             <article id="messages">
                 <div class="article-title">Messages</div>
+
+                <table class="table shadow">
+                    <thead>
+                        <tr>
+                            
+                        </tr>
+                    </thead>
+                </table>
             </article>
         </main>
     </div>

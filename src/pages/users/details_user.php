@@ -8,8 +8,6 @@ require_once('../../config/config.php');
 require_once('../../server/logout.php');
 // Utilitary functions
 require_once('../../utils/utils.php');
-// User related functions
-require_once('../../server/users.php');
 
 // No login detected
 if(!isset($_SESSION['id']) && !isset($_SESSION['username'])) {
@@ -63,24 +61,24 @@ unset($stmt);
 
                 <table class="table shadow">
                     <tr>
-                        <td>id: </td>
-                        <th><?php echo $userx['id']; ?></td>
+                        <th>#</th>
+                        <td><?php echo $userx['id']; ?></td>
                     </tr>
                     <tr>
-                        <td>username: </td>
-                        <th><?php echo $userx['username']; ?></td>
+                        <th>Username</th>
+                        <td><?php echo $userx['username']; ?></td>
                     </tr>
                     <tr>
-                        <td>email: </td>
-                        <th><?php echo $userx['email']; ?></td>
+                        <th>E-mail</th>
+                        <td><?php echo $userx['email']; ?></td>
                     </tr>
                     <tr>
-                        <td>dtCreated: </td>
-                        <th><?php echo date("j F Y, g:i a", strtotime($userx['dtCreated'])) ?></td>
+                        <th>Creation Date</th>
+                        <td><?php echo date("j F Y, g:i a", strtotime($userx['dtCreated'])) ?></td>
                     </tr>
                     <tr>
-                        <td>role: </td>
-                        <th><?php echo ($userx['role'] == 1) ? "Admin" : "Manager"; ?></td>
+                        <th>Role</th>
+                        <td><?php echo ($userx['role'] == 1) ? "Admin" : "Manager"; ?></td>
                     </tr>
                 </table>
             </article>

@@ -7,12 +7,13 @@ if(isset($_POST['loginSubmit'])) {
     // Variables
     $email = $_POST['email'];
     $password = $_POST['password'];
+    $password = md5($_POST['password']);
 
     // Search for the user in the database
     $sql = "SELECT * FROM tblUser WHERE email = :email AND pass = :password LIMIT 1";
     $stmt = $conn->prepare($sql);
     $stmt->bindParam(':email', $email, PDO::PARAM_STR);
-    $stmt->bindParam(':password', md5($password), PDO::PARAM_STR);
+    $stmt->bindParam(':password', $password, PDO::PARAM_STR);
     $stmt->execute();
 
     // If the user is found, log him in

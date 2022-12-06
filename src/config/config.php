@@ -1,9 +1,9 @@
 <?php
 
-define('DB_SERVER', 'localhost');
+define('DB_SERVER', 'host.docker.internal');
 define('DB_USER', 'root');
 define('DB_PASS', '');
-define('DB_NAME', 'DBSIR');
+define('DB_NAME', 'sir_backend_db');
 
 try {
     $conn = new PDO("mysql:host=" . DB_SERVER . ";dbname=" . DB_NAME . ";charset=utf8", DB_USER, DB_PASS);

@@ -1,5 +1,7 @@
 <?php
 
+// error_reporting(0);
+
 // Start the session
 session_start();
 // Require the mysqli connection
@@ -8,9 +10,6 @@ require_once('../../config/config.php');
 require_once('../../server/logout.php');
 // Utilitary functions
 require_once('../../utils/utils.php');
-
-// CRUD User related functions
-require_once('../../server/users.php');
 
 // No login detected
 if(!isset($_SESSION['id']) && !isset($_SESSION['username'])) {
@@ -48,7 +47,6 @@ if($_SESSION['role'] == 2) {
             <?php require_once('../../components/navbar.php'); ?>
             <article id="users">
                 <div class="article-title">Admins</div>
-
                 <table class="table shadow">
                     <thead>
                         <tr>
@@ -62,7 +60,6 @@ if($_SESSION['role'] == 2) {
                 </table>
 
                 <div class="article-title">Managers</div>
-
                 <table class="table shadow">
                     <thead>
                         <tr>
@@ -74,6 +71,8 @@ if($_SESSION['role'] == 2) {
                     </thead>
                     <tbody><?php printUsers($conn, 2); ?></tbody>
                 </table>
+
+                <button class="btn add-btn" onclick="window.location.href='add_user.php'">Add New User</button>
             </article>
         </main>
     </div>

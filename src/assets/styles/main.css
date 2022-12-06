@@ -88,10 +88,15 @@ body {
 
 .hidden { display: none; }
 
+.text-center { text-align: center; }
+
+.mx-auto { margin-block: auto; }
+.my-auto { margin-inline: auto; }
+
 .table {
     --content-padding: 1rem;
 
-    width: calc(75% - var(--content-padding));
+    width: calc(100% - var(--content-padding));
     color: var(--text-color);
     overflow: hidden;
     border-radius: var(--rounded-md);
@@ -122,14 +127,16 @@ body {
     color: var(--primary);
 }
 
+.table tbody tr {
+    background-color: var(--secondary);
+}
+
 .table tbody tr:nth-child(even) {
     background-color: rgba(0,0,0,.125);
 }
 
-.table tbody td:last-child {
-    display: flex;
-    justify-content: space-between;
-    flex-direction: row;
+.table tbody td:last-child i {
+    margin-right: calc(var(--content-padding) * 2);
 }
 
 .table i { color: var(--text-color); }

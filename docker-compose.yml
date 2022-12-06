@@ -1,0 +1,30 @@
+version: '3'
+services:
+  db:
+    image: mysql:latest
+    environment:
+      MYSQL_DATABASE: sir_backend_db
+      MYSQL_USER: sir_backend_db
+      MYSQL_PASSWORD: sir_backend_db
+      MYSQL_ALLOW_EMPTY_PASSWORD: 1
+    volumes:
+      - "./db:/docker-entrypoint-initdb.d"
+    ports:
+      - "3306:3306"
+    networks:
+      - backend-docker
+  www:
+    depends_on:
+      - db
+    build:
+      dockerfile: Dockerfile
+      context: .
+    volumes:
+      - "./src:/var/www/html"
+    ports:
+      - "80:80"
+    networks:
+      - backend-docker
+networks:
+  backend-docker:
+    driver: bridge
