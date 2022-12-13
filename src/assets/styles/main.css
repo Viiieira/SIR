@@ -11,7 +11,7 @@
 /* General Styling */
 :root {
     /* Color Pallete */
-    --primary-variant: hsl(212, 25%, 15%);
+    --primary-variant: hsl(212, 25%, 20%);
     --primary: hsl(212, 25%, 30%);
     --secondary: hsl(212, 25%, 40%);
     --tertiary: hsl(212, 25%, 60%);
@@ -23,7 +23,6 @@
 
     /* Font Family */
     --ff-base: 'Lora', serif;
-    /* --ff-accent: 'Poppins', sans-serif; */
 
     /* Font Weights */
     --fw-regular: 400;
@@ -31,7 +30,7 @@
     --fw-bold: 600;
 
     /* Shadows */
-    --shadow: 0 0.5rem 1rem rgb(0 0 0 / 15%);
+    --shadow: 0 0.25rem 1rem rgb(0 0 0 / 15%);
 
     /* Border Radius */
     --rounded-sm: .5rem;
@@ -93,6 +92,22 @@ body {
 .mx-auto { margin-block: auto; }
 .my-auto { margin-inline: auto; }
 
+/* Button */
+.button {
+    padding: .5rem 1.5rem;
+    background-color: var(--primary);
+    color: var(--title-color);
+    font-size: 1.25rem;
+    font-weight: var(--fw-bold);
+    border-radius: var(--rounded-sm);
+    border: 3px solid transparent;
+}
+
+.button:hover,
+.button:focus-within {
+    background-color: var(--primary-variant);
+}
+
 .table {
     --content-padding: 1rem;
 
@@ -111,9 +126,7 @@ body {
 
 @media screen and (max-width: 600px) {
     .table td,
-    .table th {
-        padding: var(--content-padding);
-    }
+    .table th { padding: var(--content-padding); }
 }
 
 .table thead tr {
@@ -122,25 +135,17 @@ body {
     color: var(--title-color);
 }
 
+.table tbody td:last-child i { margin-right: calc(var(--content-padding) * 2); }
+
+.table i { color: var(--text-color); }
+.table i:hover { color: var(--tertiary); }
+
 .light-mode .table thead tr {
     background-color: var(--title-color);
     color: var(--primary);
 }
 
-.table tbody tr {
-    background-color: var(--secondary);
-}
-
-.table tbody tr:nth-child(even) {
-    background-color: rgba(0,0,0,.125);
-}
-
-.table tbody td:last-child i {
-    margin-right: calc(var(--content-padding) * 2);
-}
-
-.table i { color: var(--text-color); }
-.table i:hover { color: var(--tertiary); }
+.light-mode .table tbody tr { background-color: rgb(248, 248, 248); }
 
 /* Custom Scrollbar */
 ::-webkit-scrollbar { width: 5px; }
@@ -150,6 +155,4 @@ body {
 .light-mode a.nav-brand { color: var(--secondary); }
 
 .light-mode button:hover,
-.light-mode button:focus {
-    background-color: var(--tertiary);
-}
+.light-mode button:focus { background-color: var(--tertiary); }

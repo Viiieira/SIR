@@ -64,4 +64,34 @@ function printUserRolesSelect ($conn, $userRole) {
     }
 }
 
+function printMessages ($conn, $state) {
+    // Query for the Message State, prepare the statement, bind the parameters and execute the query
+    $sqlState = "
+        SELECT *
+        FROM tblMessage m, tblMessageState ms
+        WHERE m.state = ms.id AND ms.id = :state";
+    $stmtState = $conn->prepare($sqlState);
+    $stmtState->bindParam(':state', $state, PDO::PARAM_INT);
+    $stmtState->execute();
+
+    // Verify if the query returned any results
+    if($stmtState->rowCount() > 0) {
+        while($state = $stmtState->fetch(PDO::FETCH_ASSOC)) {
+            // print table row with data
+            echo "<tr>";
+            echo "<td>" . $state['email'] . "</td>";
+            echo "<td>" . $state['message'] . "</td>";
+            echo "<td>" . $state['state'] . "</td>";
+            echo "<td>" . $state['idUserReply'] . "</td>";
+            echo "<td>";
+            echo "<a href='details_user.php?id=" . $state['id'] . "'><i class='fa-regular fa-eye'></i></a>";
+            echo "<a href='edit_user.php?id=" . $state['id'] . "'><i class='fa-regular fa-pencil'></i></a>";
+            echo "<a href='delete_user.php?id=" . $state['id'] . "'><i class='fa-regular fa-trash'></i></a>";
+            echo "</td>";
+        }
+    } else {
+        echo "<tr><td colspan=5>There are no records</td></tr>";
+    }
+}
+
 ?>

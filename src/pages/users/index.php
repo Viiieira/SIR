@@ -1,7 +1,5 @@
 <?php
 
-// error_reporting(0);
-
 // Start the session
 session_start();
 // Require the mysqli connection
@@ -72,7 +70,7 @@ if($_SESSION['role'] == 2) {
                     <tbody><?php printUsers($conn, 2); ?></tbody>
                 </table>
 
-                <button class="btn add-btn" onclick="window.location.href='add_user.php'">Add New User</button>
+                <button class="button" onclick="window.location.href='add_user.php'">Add New User</button>
             </article>
         </main>
     </div>

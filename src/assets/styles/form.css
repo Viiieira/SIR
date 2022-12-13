@@ -47,7 +47,7 @@
 #form-wrapper input {
     width: 100%;
     border: none;
-    background-color: var(--secondary);
+    background-color: var(--primary);
     padding: 10px 20px;
     color: var(--title-color);
     font-size: 1.25rem;
@@ -61,7 +61,7 @@
 }
 
 #form-wrapper input:focus {
-    background-color: var(--tertiary);
+    background-color: var(--secondary);
 }
 
 #form-wrapper button[type="submit"] {

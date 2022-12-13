@@ -46,12 +46,36 @@ if($_SESSION['role'] == 2) {
             <article id="messages">
                 <div class="article-title">Messages</div>
 
+                <div class="article-subtitle">Not Read</div>
                 <table class="table shadow">
                     <thead>
                         <tr>
-                            
+                            <th>E-mail</th>
+                            <th>Message</th>
+                            <th>State</th>
+                            <th>Extra</th>
+                            <th>Options</th>
                         </tr>
                     </thead>
+                    <tbody>
+                        <?php printMessages($conn, 1); ?>
+                    </tbody>
+                </table>
+
+                <div class="article-subtitle">Read</div>
+                <table class="table shadow">
+                    <thead>
+                        <tr>
+                            <th>E-mail</th>
+                            <th>Message</th>
+                            <th>State</th>
+                            <th>Extra</th>
+                            <th>Options</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <?php printMessages($conn, 2); ?>
+                    </tbody>
                 </table>
             </article>
         </main>

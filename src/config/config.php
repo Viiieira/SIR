@@ -1,8 +1,8 @@
 <?php
 
 define('DB_SERVER', 'host.docker.internal');
-define('DB_USER', 'root');
-define('DB_PASS', '');
+define('DB_USER', 'sir_backend_db');
+define('DB_PASS', 'sir_backend_db');
 define('DB_NAME', 'sir_backend_db');
 
 try {
