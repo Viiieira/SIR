@@ -2,5 +2,8 @@
 <project version="4">
   <component name="SqlDialectMappings">
     <file url="file://$PROJECT_DIR$/db/bckDB.sql" dialect="MariaDB" />
+    <file url="file://$PROJECT_DIR$/src/config/bckDB.sql" dialect="MySQL" />
+    <file url="file://$PROJECT_DIR$/src/utils/contacts.php" dialect="GenericSQL" />
+    <file url="PROJECT" dialect="MySQL" />
   </component>
 </project>

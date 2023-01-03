@@ -21,7 +21,7 @@ if($_SESSION['role'] == 2) {
     // If he has no access
     if(verifyManagerSectionAccess("Education", $conn) == false) {
         // Redirect to dashboard
-        header('Location: ../dashboard/');
+        header('Location: ../messages/');
         exit();
     }
 }

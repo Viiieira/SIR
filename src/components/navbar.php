@@ -17,7 +17,7 @@ $user = $stmt->fetch(PDO::FETCH_ASSOC);
 <div id="navbar">
     <div class="navbar-section navbar-user">
         <div class="navbar-dropdown" id="navbar-dropdown">
-            <img src="../../assets/images/<?php echo $user['imgPath']; ?>" class="navbar-img" alt=""> 
+            <img src="../../assets/images/<?php if(!empty($user['imgPath'])) { echo $user['imgPath']; } else { echo "user_notfound.png"; } ?>" class="navbar-img" alt="">
             <div class="navbar-dropdown-title"><?php echo $_SESSION['username']; ?></div>
             <i class="fa-regular fa-chevron-down"></i>
         </div>

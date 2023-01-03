@@ -21,7 +21,7 @@ if($_SESSION['role'] == 2) {
     // If he has no access
     if(verifyManagerSectionAccess("Dashboard", $conn) == false) {
         // Log him out the session
-        header('Location: ?logout');
+        header('Location: ../messages/');
         exit();
     }
 }

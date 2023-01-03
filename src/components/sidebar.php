@@ -7,7 +7,10 @@
         <h5 class="sidebar-title">Menu</h5>
         <?php
         // Manager and Admin Section
-        $sqlManagerSection = "SELECT s.section, s.icon FROM tblUser AS u, tblSection AS s, tblManagerSectionAccess AS msa WHERE u.id = msa.idManager AND s.id = msa.idSection AND u.id = :id";
+        $sqlManagerSection = "
+            SELECT s.section, s.icon
+            FROM tblUser AS u, tblSection AS s, tblManagerSectionAccess AS msa
+            WHERE u.id = msa.idManager AND s.id = msa.idSection AND u.id = :id";
         $sqlAdminSection = "SELECT * FROM tblSection";
 
         if($_SESSION['role'] == 1) {

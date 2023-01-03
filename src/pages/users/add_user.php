@@ -8,6 +8,7 @@ require_once('../../config/config.php');
 require_once('../../server/logout.php');
 // Utilitary functions
 require_once('../../utils/utils.php');
+require_once('../../utils/users.php');
 
 // No login detected
 if(!isset($_SESSION['id']) && !isset($_SESSION['username'])) {
@@ -18,12 +19,8 @@ if(!isset($_SESSION['id']) && !isset($_SESSION['username'])) {
 // If the user is a manager,
 // verify if he has access to the section
 if($_SESSION['role'] == 2) {
-    // If he has no access
-    if(verifyManagerSectionAccess("Users", $conn) == false) {
-        // Redirect to dashboard
-        header('Location: ../dashboard/');
-        exit();
-    }
+    header('Location: ./');
+    exit();
 }
 
 ?>
@@ -45,9 +42,19 @@ if($_SESSION['role'] == 2) {
         <main>
             <?php require_once('../../components/navbar.php'); ?>
             <article>
-                <div class="article-title">Add New User</div>
+                <div class="article-title">
+                    <span>Add New User</span>
+                    <div class="button-icon" onclick="window.location.href='./'">
+                        <i class="fa-solid fa-arrow-left"></i>
+                        <span>Go Back</span>
+                    </div>
+                </div>
 
                 <form class="form-dashboard" action="../../server/users.php" method="post" autocomplete="off">
+                    <?php if(isset($_SESSION['addUserError'])) {
+                        echo $_SESSION['addUserError'];
+                        unset($_SESSION['addUserError']);
+                    } ?>
                     <div class="input-group">
                         <label for="usernameField">Username</label>
                         <input type="text" name="username" id="usernameField" required autofocus>
@@ -59,6 +66,23 @@ if($_SESSION['role'] == 2) {
                     <div class="input-group">
                         <label for="passwordField">Password</label>
                         <input type="password" name="password" id="passwordField" required>
+                    </div>
+                    <div class="input-group">
+                        <label for="selectAddUser">Role</label>
+                        <select name="role" id="selectAddUser" required>
+                            <option disabled selected>-- Role --</option>
+                            <?php printUserRoleAdd($conn); ?>
+                        </select>
+                    </div>
+                    <div class="input-group">
+                        <label for="stateField">State</label>
+                        <select name="state" id="stateField" required>
+                            <option disabled selected>-- State --</option>
+                            <?php printUserStateAdd($conn); ?>
+                        </select>
+                    </div>
+                    <div id="addAdminForm" class="hidden">
+                        <div class="article-subtitle">Sections</div>
                     </div>
                     <button type="submit" name="addUserSubmit">
                         <i class="fa-regular fa-plus"></i>

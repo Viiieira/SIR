@@ -1,9 +1,21 @@
 <?php
 
+/*
+define('DB_SERVER', 'localhost');
+define('DB_USER', 'id20066564_root');
+define('DB_PASS', 'BPhXncz2AjG#');
+define('DB_NAME', 'id20066564_sir');
+
 define('DB_SERVER', 'host.docker.internal');
-define('DB_USER', 'sir_backend_db');
-define('DB_PASS', 'sir_backend_db');
-define('DB_NAME', 'sir_backend_db');
+define('DB_USER', 'SIR');
+define('DB_PASS', 'SIR');
+define('DB_NAME', 'SIR');
+*/
+
+define('DB_SERVER', 'host.docker.internal');
+define('DB_USER', 'SIR');
+define('DB_PASS', 'SIR');
+define('DB_NAME', 'SIR');
 
 try {
     $conn = new PDO("mysql:host=" . DB_SERVER . ";dbname=" . DB_NAME . ";charset=utf8", DB_USER, DB_PASS);

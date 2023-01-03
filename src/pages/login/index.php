@@ -27,7 +27,7 @@ if(isset($_SESSION['id']) && $_SESSION['username']) {
                 <label for="emailField">
                     E-mail <span class="text-secondary">*</span>
                 </label>
-                <input type="email" name="email" id="emailField" placeholder="johndoe@company.com" required autofocus>
+                <input type="email" name="email" id="emailField" placeholder="johndoe@company.com" value="<?php if(isset($_SESSION['tempEmail'])) { echo $_SESSION['tempEmail']; unset($_SESSION['tempEmail']); } ?>" required autofocus>
                 <?php
                     
                 if(isset($_SESSION['loginError'])) {

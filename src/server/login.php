@@ -6,11 +6,10 @@ require_once('../config/config.php');
 if(isset($_POST['loginSubmit'])) {
     // Variables
     $email = $_POST['email'];
-    $password = $_POST['password'];
     $password = md5($_POST['password']);
 
-    // Search for the user in the database
-    $sql = "SELECT * FROM tblUser WHERE email = :email AND pass = :password LIMIT 1";
+    // Search for the active user in the database
+    $sql = "SELECT * FROM tblUser WHERE email = :email AND pass = :password and state=2 LIMIT 1";
     $stmt = $conn->prepare($sql);
     $stmt->bindParam(':email', $email, PDO::PARAM_STR);
     $stmt->bindParam(':password', $password, PDO::PARAM_STR);
@@ -22,15 +21,33 @@ if(isset($_POST['loginSubmit'])) {
         $_SESSION['id'] = $user['id'];
         $_SESSION['username'] = $user['username'];
         $_SESSION['role'] = $user['role'];
-        header('Location: ../pages/dashboard/');
+
+        // If the user is an admin, redirect him to the dashboard
+        // if the user is a manager, redirect him to the first section that he has access to
+        if($_SESSION['role'] == 1) {
+            header('Location: ../pages/dashboard/');
+        } else {
+            $sql = "
+                SELECT s.section
+                FROM tblManagerSectionAccess msa, tblSection s
+                WHERE msa.idManager =:idManager AND msa.idSection = s.id LIMIT 1";
+            $stmt = $conn->prepare($sql);
+            $stmt->bindParam("idManager", $_SESSION['id'], PDO::PARAM_INT);
+            $stmt->execute();
+            if($stmt->rowCount() == 0) {
+                header('Location: ../pages/messages/');
+            } else {
+                $firstSection = $stmt->fetch(PDO::FETCH_NUM);
+                header("Location: ../pages/" . strtolower($firstSection[0]));
+            }
+        }
     } else {
         // Send the user back to the dashboard,
         // with the error stored in the session
-        $_SESSION['loginError'] = "Dados incorretos!";
+        $_SESSION["loginError"] = "Incorrect data!";
+        $_SESSION["tempEmail"] = $_POST['email'];
         header('Location: ../pages/login/');
     }
-
-    unset($stmt);
     exit();
 }
 

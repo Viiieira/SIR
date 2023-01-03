@@ -8,6 +8,8 @@ require_once('../../config/config.php');
 require_once('../../server/logout.php');
 // Utilitary functions
 require_once('../../utils/utils.php');
+// Messages functions
+require_once('../../utils/messages.php');
 
 // No login detected
 if(!isset($_SESSION['id']) && !isset($_SESSION['username'])) {
@@ -15,22 +17,17 @@ if(!isset($_SESSION['id']) && !isset($_SESSION['username'])) {
     exit();
 }
 
-// If the user is a manager,
-// verify if he has access to the section
-if($_SESSION['role'] == 2) {
-    // If he has no access
-    if(verifyManagerSectionAccess("Users", $conn) == false) {
-        // Redirect to dashboard
-        header('Location: ../messages/');
-        exit();
-    }
+if(!isset($_GET['id']) || empty($_GET['id'])) {
+    header("Location: ./");
+    exit();
 }
 
-$sql = "SELECT * FROM tblUser WHERE id = :id";
+// Get all the information about the message with that id
+$sql = "SELECT * FROM tblMessage WHERE id = :id";
 $stmt = $conn->prepare($sql);
 $stmt->bindParam(':id', $_GET['id'], PDO::PARAM_INT);
 $stmt->execute();
-$userx = $stmt->fetch(PDO::FETCH_ASSOC);
+$message = $stmt->fetch(PDO::FETCH_ASSOC);
 
 unset($stmt);
 ?>
@@ -53,7 +50,7 @@ unset($stmt);
             <article id="users">
 
                 <div class="article-title">
-                    <span>User #<?php echo $userx['id']; ?></span>
+                    <span>Message #<?php echo $message['id']; ?></span>
                     <div class="button-icon" onclick="window.location.href='./'">
                         <i class="fa-solid fa-arrow-left"></i>
                         <span>Go Back</span>
@@ -62,30 +59,24 @@ unset($stmt);
 
                 <table class="table shadow">
                     <tr>
-                        <th>Username</th>
-                        <td><?php echo $userx['username']; ?></td>
+                        <th>Name</th>
+                        <td><?php echo $message['name']; ?></td>
                     </tr>
                     <tr>
                         <th>E-mail</th>
-                        <td><?php echo $userx['email']; ?></td>
+                        <td><?php echo $message['email']; ?></td>
                     </tr>
                     <tr>
-                        <th>Creation Date</th>
-                        <td><?php echo date("j F Y, g:i a", strtotime($userx['dtCreated'])) ?></td>
+                        <th>Date</th>
+                        <td><?php echo date("j F Y, g:i a", strtotime($message['dtInserted'])); ?></td>
                     </tr>
                     <tr>
-                        <th>Role</th>
-                        <td><?php echo ($userx['role'] == 1) ? "Admin" : "Manager"; ?></td>
+                        <th>Message</th>
+                        <td><?php echo $message['message']; ?></td>
                     </tr>
                     <tr>
-                        <th>Estado</th>
-                        <td>
-                            <?php if($userx['state'] == 1) { ?>
-                                <div class="user-state deactive"></div> Deactive
-                            <?php } else { ?>
-                                <div class="user-state active"></div> Active
-                            <?php } ?>
-                        </td>
+                        <th>State</th>
+                        <td><?php printMessageState($conn, $_GET['id']); ?></td>
                     </tr>
                 </table>
             </article>

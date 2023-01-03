@@ -3,9 +3,9 @@ services:
   db:
     image: mysql:latest
     environment:
-      MYSQL_DATABASE: sir_backend_db
-      MYSQL_USER: sir_backend_db
-      MYSQL_PASSWORD: sir_backend_db
+      MYSQL_DATABASE: SIR
+      MYSQL_USER: SIR
+      MYSQL_PASSWORD: SIR
       MYSQL_ALLOW_EMPTY_PASSWORD: 1
     volumes:
       - "./db:/docker-entrypoint-initdb.d"

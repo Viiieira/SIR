@@ -61,11 +61,11 @@
     font-family: var(--ff-base);
 }
 
+/* general styling */
 html {scroll-behavior: smooth;}
 ul { list-style: none; }
 textarea { resize: none; }
 
-/* general styling */
 a {
     color: var(--tertiary);
     text-decoration: none;
@@ -73,6 +73,18 @@ a {
 
 a:hover,
 a:focus {text-decoration: underline;}
+
+select {
+    background-color: transparent;
+    border: 1px solid var(--title-color);
+    padding-inline: 1rem;
+    color: var(--text-color);
+}
+
+option {
+    background-color: var(--primary-variant);
+    color: var(--title-color);
+}
 
 body {
     background-color: var(--primary);
@@ -108,45 +120,6 @@ body {
     background-color: var(--primary-variant);
 }
 
-.table {
-    --content-padding: 1rem;
-
-    width: calc(100% - var(--content-padding));
-    color: var(--text-color);
-    overflow: hidden;
-    border-radius: var(--rounded-md);
-    border-collapse: collapse;
-}
-
-.table td,
-.table th {
-    padding: var(--content-padding) 2rem;
-    min-width: 200px;
-}
-
-@media screen and (max-width: 600px) {
-    .table td,
-    .table th { padding: var(--content-padding); }
-}
-
-.table thead tr {
-    border-bottom: 2px solid var(--primary-variant);
-    background-color: var(--tertiary);
-    color: var(--title-color);
-}
-
-.table tbody td:last-child i { margin-right: calc(var(--content-padding) * 2); }
-
-.table i { color: var(--text-color); }
-.table i:hover { color: var(--tertiary); }
-
-.light-mode .table thead tr {
-    background-color: var(--title-color);
-    color: var(--primary);
-}
-
-.light-mode .table tbody tr { background-color: rgb(248, 248, 248); }
-
 /* Custom Scrollbar */
 ::-webkit-scrollbar { width: 5px; }
 ::-webkit-scrollbar-thumb { background-color: var(--tertiary); }
@@ -156,3 +129,8 @@ body {
 
 .light-mode button:hover,
 .light-mode button:focus { background-color: var(--tertiary); }
+
+/* WebHost Stuff */
+img[src*="https://cdn.000webhost.com/000webhost/logo/footer-powered-by-000webhost-white2.png"]{
+    display: none !important;
+}

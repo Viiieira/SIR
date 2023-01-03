@@ -1,16 +1,12 @@
 const navbarDropDownToggle = document.getElementById('navbar-dropdown');
 const navbarDropDownMenu = document.getElementById('navbar-dropdown-menu');
+const filterToggler = document.getElementById('filterToggler');
+const filterMenu = document.getElementById('filterMenu');
 
 navbarDropDownToggle.addEventListener('click', function() {
     navbarDropDownMenu.classList.toggle('hidden');
 })
 
-// Article Stuff
-
-    // Get the variables (link, article)
-const link = document.querySelectorAll('a.sidebar-link');
-const article = document.querySelectorAll('article');
-
-link.addEventListener('click', function() {
-    console.log("boas");
+filterToggler.addEventListener('click', function () {
+    filterMenu.classList.toggle('hidden');
 })
