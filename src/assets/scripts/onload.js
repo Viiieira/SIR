@@ -11,12 +11,12 @@ function checkActiveTheme() {
 
 window.onload = checkActiveTheme;
 
-// Function to show the form only if the new user is going to be an administrator
+// Function to show the form only if the new user is going to be a manager
 document.addEventListener('DOMContentLoaded', function() {
     const selectElement = document.getElementById("selectAddUser");
         selectElement.addEventListener('change', function() {
-        const formSelectElement = document.getElementById("addAdminForm")
-        if(selectElement.value == 1) {
+        const formSelectElement = document.getElementById("addManagerForm")
+        if(selectElement.value == 2) {
             formSelectElement.classList.remove('hidden');
         } else {
             formSelectElement.classList.add('hidden');

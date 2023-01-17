@@ -3,7 +3,7 @@
 session_start();
 
 if(isset($_SESSION['id']) && $_SESSION['username']) {
-    header('Location: ../dashboard/');
+    header('Location: ../statistics/');
     exit();
 }
 

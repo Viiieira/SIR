@@ -26,15 +26,9 @@ $user = $stmt->fetch(PDO::FETCH_ASSOC);
 
 <ul class="navbar-dropdown-menu hidden" id="navbar-dropdown-menu">
     <li class="navbar-drowpdown-item">
-        <a href="#" class="navbar-dropdown-link">
+        <a href="../profile/" class="navbar-dropdown-link">
             <i class="fa-regular fa-address-card"></i>
             <span>My Profile</span>
-        </a>
-    </li>
-    <li class="navbar-dropdown-item">
-        <a href="#" class="navbar-dropdown-link">
-            <i class="fa-regular fa-clock-rotate-left"></i>
-            <span>My History</span>
         </a>
     </li>
     <li class="navbar-dropdown-item">

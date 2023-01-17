@@ -22,10 +22,10 @@ if(isset($_POST['loginSubmit'])) {
         $_SESSION['username'] = $user['username'];
         $_SESSION['role'] = $user['role'];
 
-        // If the user is an admin, redirect him to the dashboard
+        // If the user is an admin, redirect him to the statistics
         // if the user is a manager, redirect him to the first section that he has access to
         if($_SESSION['role'] == 1) {
-            header('Location: ../pages/dashboard/');
+            header('Location: ../pages/statistics/');
         } else {
             $sql = "
                 SELECT s.section
@@ -42,7 +42,7 @@ if(isset($_POST['loginSubmit'])) {
             }
         }
     } else {
-        // Send the user back to the dashboard,
+        // Send the user back to the statistics,
         // with the error stored in the session
         $_SESSION["loginError"] = "Incorrect data!";
         $_SESSION["tempEmail"] = $_POST['email'];

@@ -11,19 +11,8 @@ require_once('../../utils/utils.php');
 
 // No login detected
 if(!isset($_SESSION['id']) && !isset($_SESSION['username'])) {
-    header('Location: ../login/');
+    header('Location: ../portfolio/');
     exit();
-}
-
-// If the user is a manager,
-// verify if he has access to the section
-if($_SESSION['role'] == 2) {
-    // If he has no access
-    if(verifyManagerSectionAccess("Projects", $conn) == false) {
-        // Redirect to dashboard
-        header('Location: ../messages/');
-        exit();
-    }
 }
 
 ?>
@@ -33,7 +22,7 @@ if($_SESSION['role'] == 2) {
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Projects</title>
+    <title>About</title>
     <?php require_once('../../components/head_links.php'); ?>
 </head>
 <body>
@@ -43,8 +32,10 @@ if($_SESSION['role'] == 2) {
         <?php require_once('../../components/sidebar.php'); ?>
         <main>
             <?php require_once('../../components/navbar.php'); ?>
-            <article id="projects">
-                <div class="article-title">Projects</div>
+            <article id="calculator">
+                <div class="article-title">
+                    <span>About Me</span>
+                </div>
             </article>
         </main>
     </div>

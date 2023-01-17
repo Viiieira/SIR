@@ -1,0 +1,644 @@
+@import url('https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600;1,700&display=swap');
+
+/* General Styling */
+:root {
+    /* Color Pallete */
+    --primary: rgb(38, 50, 64);
+    --secondary: rgb(195, 191, 199);
+    --tertiary: rgb(102, 129, 173);
+    --quinary: rgb(121, 119, 128);
+
+    --title-color: rgb(255, 255, 255);
+
+    /* Fonts */
+    --serif: 'Lora', serif;
+    --sans-serif: 'Montserrat Alternates', sans-serif;
+
+    /* Sizes */
+    --min-height-navbar: 12vh;
+}
+
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    outline: none;
+    transition: all .2s;
+    font-family: var(--serif);
+}
+
+html {scroll-behavior: smooth}
+
+body {
+    background-color: var(--primary);
+    font-size: 1rem;
+    font-weight: 400;
+    line-height: 1.6;
+}
+
+a {
+    color: var(--tertiary);
+    text-decoration: none;
+}
+
+a:hover,
+a:focus {text-decoration: underline;}
+
+.colored { color: var(--tertiary);}
+
+h1 {
+    font-size: 3rem;
+    margin-bottom: 10px;
+}
+
+/* Progress Bar */
+.progress-container {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    height: 8px;
+    background: transparent;
+}
+
+.progress-bar {
+    height: 8px;
+    background-color: var(--tertiary);
+    width: 0%;
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+    width: 5px;
+}
+
+::-webkit-scrollbar-thumb {
+    background-color: var(--tertiary);
+}
+
+/* Navbar */
+.navbar {
+    background-color: var(--primary);
+    color: var(--title-color);
+    padding: 0rem 4rem;
+    /* min-height: var(--min-height-navbar); */
+}
+
+a.navbar-brand {
+    padding: 1rem 0;
+    display: block;
+    text-decoration: none;
+    font-size: 2.5rem;
+    color: var(--title-color);
+    font-style: italic;
+    font-weight: bold;
+}
+
+a.navbar-brand:hover,
+a.navbar-brand:focus {
+    color: var(--tertiary);
+}
+
+.navbar-toggler {
+    background: var(--tertiary);
+    border: none;
+    padding: 10px;
+    outline: none;
+}
+
+.navbar-toggler i {
+    color: var(--secondary);
+}
+
+.navbar-toggler:focus {
+    box-shadow: none;
+}
+
+.navbar-expand-lg .navbar-nav .nav-link {
+    padding: 1.5rem;
+    font-size: 1rem;
+    position: relative;
+    color: var(--title-color);
+    text-decoration: none;
+    text-align: center;
+    border-bottom: 4px solid transparent;
+    cursor: pointer;
+}
+
+.navbar-expand-lg .navbar-nav .nav-link:hover {
+    border-bottom: 4px solid var(--tertiary);
+    color: var(--tertiary);
+}
+
+@media only screen and (max-width: 425px) {
+    .navbar {
+        padding: 0rem 2rem;
+    }
+
+    a.navbar-brand {
+        font-size: 1.5rem;
+    }
+}
+
+#toggleLight {
+    font-size: 1.6rem;
+}
+
+/* Header Hero */
+#hero {
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    padding: calc(2.5rem * .5) calc(7.5rem * .5);
+    background: linear-gradient(180deg, rgba(38, 50, 64, .8) 0%, rgba(38, 50, 64, 1) 100%), url('../images/me.jpg');
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    color: var(--secondary);
+}
+
+#hero .info {width: 100%}
+
+#hero h1 {font-size: 3rem;}
+
+#hero h3 {
+    font-weight: 400;
+    font-size: 1.5rem;
+    color: var(--title-color);
+}
+
+#hero #go-down {
+    width: 100%;
+    height: 10vh;
+    text-align: justify;
+}
+
+#hero button, #contact-me-form form button[type="submit"] {
+    background-color: var(--secondary);
+    color: var(--primary);
+    padding: 10px 20px;
+    border-radius: 20px;
+    border: none;
+    font-size: 14px;
+    cursor: pointer;
+    font-weight: 600;
+    font-style: italic;
+    margin-top: 15px;
+}
+
+#hero button:hover {
+    background-color: var(--title-color);
+}
+
+/* Ajuste de Fontes para Mobile */
+@media screen and (max-width: 768px) {
+    #hero,
+    #hero #go-down {text-align: center;}
+
+    #hero h1 {font-size: 2rem;}
+
+    #hero h3,
+    #hero #go-down button {font-size: 1rem;}
+}
+
+/* About Me */
+#about-me {
+    width: 100%;
+    padding: calc((2.5rem * .5) + var(--min-height-navbar)) calc(7.5rem * .5);
+    text-align: center;
+    background: var(--primary);
+    color: var(--secondary);
+}
+
+#about-me h1 {
+    margin-bottom: 5rem;
+    text-align: center;
+    font-size: 3rem;
+    font-weight: 600;
+    color: var(--title-color);
+}
+
+#about-me h1 span {
+    text-transform: lowercase;
+    font-weight: 400;
+}
+
+#about-me-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.about-me-card {
+    flex: 1 1 300px;
+    margin: 1rem 2rem;
+    text-align: justify;
+}
+
+.about-me-card:last-child {
+    margin: 1rem 0;
+}
+
+.about-me-card h3 {
+    margin-bottom: 2.5rem;
+}
+
+.about-me-card h3 p {
+    margin-bottom: 0;
+    font-size: 1.5rem;
+    margin-bottom: .5rem;
+}
+
+.about-me-card h3 .colored {font-size: 2.5rem;}
+
+.about-me-info p,
+.about-me-info li {
+    font-size: 1.25rem;
+    font-weight: 400;
+}
+
+.about-me-info p {
+    text-align: justify;
+    text-indent: 1rem;
+}
+
+.about-me-info h5 {
+    color: var(--title-color);
+    font-weight: 800;
+    margin: 1.5rem 0;
+    font-size: 1.25rem;
+}
+
+.about-me-info h5:last-child {
+    margin-bottom: 0;
+}
+
+.about-me-info h5 i {
+    color: var(--title-color);
+    margin-right: 1rem;
+}
+
+.about-me-info ul li {
+    list-style: circle;
+    margin-bottom: .25rem;
+}
+
+.about-me-card img {
+    width: 100%;
+    border-radius: 20px;
+    position: relative;
+}
+
+.about-me-card img::after {
+    content: '';
+    position: absolute;
+    left: 0; top: 0;
+    width: 100%; height: 100%;
+    background: linear-gradient(180deg, rgba(38, 50, 64, .8) 0%, rgba(38, 50, 64, 1) 90%);
+}
+
+@media only screen and (max-width: 768px) {
+    #about-me, #education {
+        padding: calc((2.5rem * .5) + var(--min-height-navbar)) calc(2.5rem * .5);
+    }
+
+    .about-me-card {
+        margin: 3rem 1rem;
+    }
+
+    .about-me-card:last-child {
+        margin: 1rem 2rem;
+    }
+}
+
+.skills-container {
+    display: flex;
+    align-items: baseline;
+    gap: 2rem;
+}
+
+#education {
+    padding: calc((2.5rem * .5) + var(--min-height-navbar)) calc(7.5rem * .5);
+    color: var(--secondary);
+    max-width: 60%;
+    margin: 0 auto;
+}
+
+/* Extra large devices (large laptops and desktops, 1200px and down) */
+@media only screen and (max-width: 1200px) {
+    #education {
+        max-width: 70%;
+        margin: 0 auto;
+    }
+}
+
+/* Large devices (laptops/desktops, 992px and down) */
+@media only screen and (max-width: 992px) {
+    #education {
+        max-width: 80%;
+        margin: 0 auto;
+    }
+}
+
+/* Medium devices (landscape tablets, 768px and down) */
+@media only screen and (max-width: 768px) {
+    #education {
+        max-width: 90%;
+    }
+}
+
+/* Mobile/Smal devices (600px and down) */
+@media only screen and (max-width: 600px) {
+    #education {
+        max-width: 100%;
+    }
+}
+
+#education h1 {
+    margin-bottom: 5rem;
+    text-align: center;
+    font-size: 3rem;
+    font-weight: 600;
+    color: var(--title-color);
+}
+
+#education h1 span {
+    text-transform: lowercase;
+    font-weight: 400;
+}
+
+.education-card {
+    border: 1px solid var(--quinary);
+    padding: 2rem;
+    width: 100%;
+    margin-bottom: 3rem;
+    background-color: rgba(0,0,0,.125);
+    display: grid;
+    grid-template-columns: minmax(150px, 15%) 1fr;
+    grid-gap: 3rem;
+    text-align: justify;
+}
+
+.education-card:last-child {
+    margin-bottom: 0px;
+}
+
+.education-card table {
+    width: 100%;
+}
+
+.education-date thead tr td:nth-child(even) {
+    text-align: right;
+}
+
+.education-date tr:first-child td {
+    font-size: 12px;
+}
+
+.education-date tbody tr:last-child td {
+    padding-top: 1rem;
+    width: 50%;
+    font-size: 1rem;
+}
+
+.education-date img {
+    width: 90px;
+    margin-right: 1rem;
+    border-radius: 1rem;
+    position: relative;
+}
+
+.education-date tbody td:last-child {
+    text-align: right;
+}
+
+.education-info h3 {
+    margin-bottom: 1.5rem;
+    letter-spacing: 2px;
+    font-weight: 800;
+    font-size: 1.5rem;
+    color: var(--title-color);
+}
+
+.education-info p{
+    font-size: 1.25rem;
+    text-align: justify;
+}
+
+.education-date tr:nth-child(2) td {
+    color: var(--title-color);
+}
+
+@media only screen and (max-width: 768px) {
+    .education-card {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+
+    .education-date,
+    .education-info {
+        flex: 1 1 400px;
+    }
+
+    .education-card table {
+        width: 100%;
+    }
+}
+
+@media only screen and (max-width: 425px) {
+    #education {
+        padding-left: 1rem;
+        padding-right: 1rem;
+    }
+
+    .education-card {
+        padding: 1rem;
+        font-size: .85rem;
+        text-indent: 0;
+    }
+
+    .education-date,
+    .education-info {
+        margin: 1rem;
+    }
+}
+
+#contact-me-form {
+    padding: calc((2.5rem * .5) + var(--min-height-navbar)) calc(7.5rem * .5);
+    color: var(--title-color);
+    text-align: justify;
+}
+
+#contact-me-form h1, #contact-me-form h3 {
+    text-align: center;
+}
+
+#contact-me-form h3 {
+    font-size: 1.5rem;
+    color: var(--secondary);
+}
+
+#contact-me-form form {
+    max-width: 60%;
+    margin: 0 auto;
+    text-align: right;
+    margin-top: 5rem;
+}
+
+#contact-me-form .form-input { text-align: left; }
+
+#contact-me-form form button[type="submit"] {
+    color:
+}
+
+/* Extra large devices (large laptops and desktops, 1200px and down) */
+@media only screen and (max-width: 1200px) {
+    #contact-me-form form {
+        max-width: 70%;
+    }
+}
+
+/* Large devices (laptops/desktops, 992px and down) */
+@media only screen and (max-width: 992px) {
+    #contact-me-form form {
+        max-width: 80%;
+    }
+}
+
+/* Medium devices (landscape tablets, 768px and down) */
+@media only screen and (max-width: 768px) {
+    #contact-me-form form {
+        max-width: 90%;
+    }
+}
+
+/* Mobile/Smal devices (600px and down) */
+@media only screen and (max-width: 600px) {
+    #contact-me-form form {
+        max-width: 100%;
+    }
+}
+
+#contact-me-form input,
+#contact-me-form textarea {
+    width: 100%;
+    border: none;
+    background-color: rgba(0,0,0,.125);
+    padding: 10px 20px;
+    color: var(--title-color);
+    font-size: 1.25rem;
+}
+
+#contact-me-form input:hover, #contact-me-form input:focus,
+#contact-me-form textarea:hover, #contact-me-form textarea:focus {
+    box-shadow: 0 .5rem 1rem rgba(0,0,0,.15);
+    border-radius: 4px;
+}
+
+#contact-me-form label {
+    margin-bottom: 10px;
+    font-size: 1.25rem;
+}
+
+#contact-me-form .form-input {
+    margin-bottom: 20px;
+}
+
+#contact-me-form button[type="submit"]:hover,
+#contact-me-form button[type="submit"]:focus { background-color: var(--title-color); }
+
+@media screen and (max-width: 425px) {
+    #contact-me-form {
+        padding: calc((2.5rem * .5) + var(--min-height-navbar)) 1rem;
+    }
+}
+
+/* Footer */
+footer {
+    width: 100%;
+    background-color: rgba(0,0,0,.125);
+    opacity: 0.9;
+    color: var(--title-color);
+    font-size: 1.25rem;
+    text-align: center;
+    padding: 10px 0;
+}
+
+@media only screen and (max-width: 425px) {
+    footer { font-size: 1rem; }
+}
+
+#contacts-wrapper {
+    max-width: 90%;
+    margin: 5rem auto 0 auto;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 3rem;
+}
+
+@media screen and (max-width: 425px) {
+    #contacts-wrapper {
+        padding: 3rem auto;
+    }
+}
+
+#contacts-wrapper a { color: var(--title-color); text-decoration: none; }
+
+#contacts-wrapper .contact-card {
+    flex: 0 1 300px;
+    background-color: rgba(0,0,0,.125);
+    border: 1px solid var(--quinary);
+    padding: 2rem;
+    min-width: 300px;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+#contacts-wrapper a:hover .contact-card,
+#contacts-wrapper a:focus .contact-card {
+    background-color: rgba(0,0,0,.25);
+    box-shadow: 0 .5rem 1rem rgba(0,0,0,.15);
+}
+
+#contacts-wrapper .contact-card > .icon i.fa-solid,
+#contacts-wrapper .contact-card > .icon i.fa-brands {
+    font-size: 4rem;
+    color: var(--title-color);
+    margin-bottom: 10px;
+}
+
+/* Light Mode Colors */
+.light-mode {
+    --primary: #F1F1F1;
+    --secondary: rgb(38, 50, 64);
+    --title-color: --secondary;
+}
+
+/* Light Theme Fixes */
+.light-mode a.nav-brand { color: var(--secondary); }
+
+.light-mode #hero {
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    padding: calc(2.5rem * .5) calc(7.5rem * .5);
+    background: linear-gradient(180deg, rgba(195, 191, 199, .8) 0%, rgba(195, 191, 199, 1) 100%), url('../images/me.jpg');
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    color: var(--secondary);
+}
+
+.light-mode #hero button:hover, .light-mode #hero button:focus,
+.light-mode #contact-me-form form button[type="submit"]:hover, .light-mode #contact-me-form form button[type="submit"]:focus {
+    background-color: var(--tertiary);
+}
+
+textarea {
+    resize: none;
+}

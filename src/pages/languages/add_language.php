@@ -13,7 +13,7 @@ require_once('../../utils/languages.php');
 
 // No login detected
 if(!isset($_SESSION['id']) && !isset($_SESSION['username'])) {
-    header('Location: ../login/');
+    header('Location: ../portfolio/');
     exit();
 }
 

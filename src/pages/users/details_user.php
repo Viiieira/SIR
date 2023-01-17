@@ -11,7 +11,7 @@ require_once('../../utils/utils.php');
 
 // No login detected
 if(!isset($_SESSION['id']) && !isset($_SESSION['username'])) {
-    header('Location: ../login/');
+    header('Location: ../portfolio/');
     exit();
 }
 
@@ -20,7 +20,7 @@ if(!isset($_SESSION['id']) && !isset($_SESSION['username'])) {
 if($_SESSION['role'] == 2) {
     // If he has no access
     if(verifyManagerSectionAccess("Users", $conn) == false) {
-        // Redirect to dashboard
+        // Redirect to statistics
         header('Location: ../messages/');
         exit();
     }

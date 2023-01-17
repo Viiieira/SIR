@@ -2,7 +2,7 @@
 
 // Function to print the roles of the selected user
 function printUserRole ($conn, $userRole) {
-    if($_SESSION['role'] == 1) {
+    if($_SESSION['role'] == 1 && $userRole == 2) {
         $sql = "SELECT * FROM tblRole";
     } else {
         $sql = "SELECT r.name FROM tblUser u, tblRole r WHERE u.role = r.id AND u.id = {$_SESSION['id']}";
@@ -10,7 +10,7 @@ function printUserRole ($conn, $userRole) {
     $stmt = $conn->prepare($sql);
     $stmt->execute();
 
-    if($_SESSION['role'] == 1) {
+    if($_SESSION['role'] == 1 && $userRole == 2) {
         echo "<select name='role'>";
         while($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
             if($row['id'] == $userRole) { ?>
@@ -26,16 +26,12 @@ function printUserRole ($conn, $userRole) {
     }
 }
 
-function printUserState ($conn, $userState) {
-    if($_SESSION['role'] == 1) {
+function printUserState ($conn, $userState, $userRole) {
+    if($_SESSION['role'] == 1 && $userRole == 2) {
         $sql = "SELECT * FROM tblUserState";
-    } else {
-        $sql = "SELECT us.state FROM tblUser u, tblUserState us WHERE u.state = us.id AND u.id = {$_SESSION['id']}";
-    }
-    $stmt = $conn->prepare($sql);
-    $stmt->execute();
+        $stmt = $conn->prepare($sql);
+        $stmt->execute();
 
-    if($_SESSION['role'] == 1) {
         echo "<select name='state'>";
         while($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
             if($row['id'] == $userState) { ?>
@@ -48,6 +44,10 @@ function printUserState ($conn, $userState) {
         <?php }
         echo "</select>";
     } else {
+        $sql = "SELECT state FROM tblUserState WHERE id=:id";
+        $stmt = $conn->prepare($sql);
+        $stmt->bindParam(":id", $userState, PDO::PARAM_INT);
+        $stmt->execute();
         echo $stmt->fetch(PDO::FETCH_ASSOC)['state'];
     }
 }
@@ -131,7 +131,7 @@ function printUsers ($conn, $arr) {
                         <?php printUserRole($conn, $user['role']); ?>
                     </td>
                     <td data-label="State">
-                        <?php printUserState($conn, $user['state']); ?>
+                        <?php printUserState($conn, $user['state'], $user['role']); ?>
                     </td>
                     <td class="table__options">
                         <a href="details_user.php?id=<?php echo $user['id']; ?>">
@@ -182,4 +182,19 @@ function printUserStateAdd ($conn) {
         <?php echo $row['state']; ?>
         </option>
     <?php }
+}
+
+function renderManagerSections($conn) {
+    $sql = "SELECT * FROM tblSection";
+    $stmt = $conn->prepare($sql);
+    $stmt->execute();
+
+    while($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
+        echo "<label>{$row['section']}</label>";
+        if(strcmp($row['section'], "Messages") == 0) {
+            echo "<input type=\"checkbox\" name=\"section[]\" value=\"{$row['id']}\" id=\"{$row['id']}\" onclick=\"this.checked = true\" checked>";
+        } else {
+            echo "<input type=\"checkbox\" name=\"section[]\" value=\"{$row['id']}\" id=\"{$row['id']}\" >";
+        }
+    }
 }

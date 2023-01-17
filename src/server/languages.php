@@ -8,6 +8,32 @@ session_start();
 // Database connection
 require_once "../config/config.php";
 
+if(isset($_POST['editLanguageSubmit'])) {
+    // Query if the there's already a language with that name
+    $sql = "SELECT * FROM tblLanguage WHERE name=:name AND id<>:id";
+    $stmt = $conn->prepare($sql);
+    $stmt->bindParam(":name", $_POST['name']);
+    $stmt->bindParam(":id", $_POST['id'], PDO::PARAM_INT);
+    $stmt->execute();
+
+    if($stmt->rowCount() > 0) {
+        $_SESSION['messageError'] = "{$_POST['name']} is already added.";
+        header('Location: ../pages/languages/');
+        exit();
+    } else {
+        // Update the language
+        $sql = "UPDATE tblLanguage SET name=:name, level=:level WHERE id=:id";
+        $stmt = $conn->prepare($sql);
+        $stmt->bindParam(":name", $_POST['name'], PDO::PARAM_STR);
+        $stmt->bindParam(":level", $_POST['level'], PDO::PARAM_INT);
+        $stmt->bindParam(":id", $_POST['id'], PDO::PARAM_INT);
+        $stmt->execute();
+        $_SESSION['messageSuccess'] = "<p>The language was updated to <b>{$_POST['name']}</b></p>";
+        header('Location: ../pages/languages/');
+        exit();
+    }
+}
+
 if(isset($_POST['addLanguageSubmit'])) {
     // Verify if that language was already added
     $sql = "SELECT * FROM tblLanguage WHERE name=:name";

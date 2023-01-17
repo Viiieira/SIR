@@ -8,11 +8,12 @@ require_once('../../config/config.php');
 require_once('../../server/logout.php');
 // Utilitary functions
 require_once('../../utils/utils.php');
+// User related functions
 require_once('../../utils/users.php');
 
 // No login detected
 if(!isset($_SESSION['id']) && !isset($_SESSION['username'])) {
-    header('Location: ../login/');
+    header('Location: ../portfolio/');
     exit();
 }
 
@@ -68,6 +69,10 @@ if($_SESSION['role'] == 2) {
                         <input type="password" name="password" id="passwordField" required>
                     </div>
                     <div class="input-group">
+                        <label for="confirmPasswordField">Confirm Password</label>
+                        <input type="password" name="confirmPassword" id="confirmPasswordField" required>
+                    </div>
+                    <div class="input-group">
                         <label for="selectAddUser">Role</label>
                         <select name="role" id="selectAddUser" required>
                             <option disabled selected>-- Role --</option>
@@ -77,16 +82,17 @@ if($_SESSION['role'] == 2) {
                     <div class="input-group">
                         <label for="stateField">State</label>
                         <select name="state" id="stateField" required>
-                            <option disabled selected>-- State --</option>
+<!--                            <option disabled selected>-- State --</option>-->
                             <?php printUserStateAdd($conn); ?>
                         </select>
                     </div>
-                    <div id="addAdminForm" class="hidden">
+                    <div id="addManagerForm" class="hidden">
                         <div class="article-subtitle">Sections</div>
+                        <?php renderManagerSections($conn); ?>
                     </div>
-                    <button type="submit" name="addUserSubmit">
+                    <button type="submit" name="addUserSubmit" class="button-icon">
                         <i class="fa-regular fa-plus"></i>
-                        Add New User
+                        Add User
                     </button>
                 </form>
             </article>

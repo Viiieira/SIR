@@ -6,16 +6,30 @@ require_once('../config/config.php');
 // Start the session
 session_start();
 
-// If the form in the portfolio is submitted
-if(isset($_POST['addMessageSubmit'])) {
-    // Verify if the email that was inputted exists more than the count limit
-    $sql = "SELECT COUNT(email) FROM tblMessage WHERE email=:email";
-    $stmt = $conn->prepare($sql);
-    $stmt->bindParam(":email", "$_POST['']");
-        // If it exists, return to the form with an error
-        $_SESSION['messageError'] = "You've maxed out the number of messages you can send.";
+if(isset($_POST['replyMessageSubmit'])) {
+    print_r($_POST);
 
-    // Verify if the same message was already sent from the same user
+    // Send email with the response
+    if(mail($_POST['to'], $_POST['header'], $_POST['message'])) {
+        $state = 2; // Replied state
+        // Update the message row, to update his state and insert the id of the user that replied
+        $sql = "UPDATE tblMessage SET state=:state, idUserReply=:idUser WHERE id=:idMessage";
+        $stmt = $conn->prepare($sql);
+        $stmt->bindParam(":state", $state, PDO::PARAM_INT);
+        $stmt->bindParam(":idUser", $_SESSION['id'], PDO::PARAM_INT);
+        $stmt->bindParam(":idMessage", $_POST['id'], PDO::PARAM_INT);
+        if($stmt->execute()) {
+            $_SESSION['messageSuccess'] = "Your reply was succesfully sent";
+        } else {
+            $_SESSION['messageError'] = "The message was not updated";
+        }
+        header('Location: ../pages/messages/');
+        exit();
+    } else {
+        $_SESSION['messageError'] = "Your email was not sent";
+        header('Location: ../pages/messages/');
+        exit();
+    }
 }
 
 ?>

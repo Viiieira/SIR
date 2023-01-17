@@ -53,7 +53,7 @@
     font-size: 1.25rem;
     font-size: 1rem;
      border-radius: var(--rounded-md);
-    transition: all .2s;
+    transition: box-shadow .2s ease-in-out;
 }
 
 #form-wrapper input:hover, #form-wrapper input:focus {

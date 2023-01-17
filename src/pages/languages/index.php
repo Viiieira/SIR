@@ -13,7 +13,7 @@ require_once('../../utils/languages.php');
 
 // No login detected
 if(!isset($_SESSION['id']) && !isset($_SESSION['username'])) {
-    header('Location: ../login/');
+    header('Location: ../portfolio/');
     exit();
 }
 
@@ -76,6 +76,9 @@ if(!isset($_SESSION['id']) && !isset($_SESSION['username'])) {
                 if(isset($_SESSION['messageSuccess'])) {
                     echo $_SESSION['messageSuccess'];
                     unset($_SESSION['messageSuccess']);
+                } else if (isset($_SESSION['messageError'])) {
+                    echo $_SESSION['messageError'];
+                    unset($_SESSION['messageError']);
                 }
                 ?>
 

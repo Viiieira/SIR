@@ -126,12 +126,12 @@ function printMessages ($conn, $arr) {
             echo "<div class='message-state $class'><i class='fa-solid $icon'></i><span>" . ucfirst($class) . "</span></div>";
             echo "</span></div></td>";
             echo "<td data-label='Replied'>";
-            if(!empty($message['idUserReply'])) {
-                echo $message['name'];
-            }
+            if($message['idUserReply'] > 0) {
+                echo printMessageUserReply($conn, $message['idUserReply']);
+            } else { echo "Vazio"; }
             echo "</td>";
             echo "<td data-label='Options' class='table__options'>";
-                echo "<a href='details_message.php?id={$message['id']}'><i class='fa-regular fa-eye'></i></a>";
+            echo "<a href='details_message.php?id={$message['id']}'><i class='fa-regular fa-eye'></i></a>";
             if(strcmp($class, "new") == 0) {
                 echo "<a href='reply_message.php?id={$message['id']}'><i class='fa-regular fa-paper-plane'></i></a>";
             } else if (strcmp($class, "spam") == 0) {
@@ -142,6 +142,24 @@ function printMessages ($conn, $arr) {
     } else {
         echo "<tr><td colspan=6>There are no records</td></tr>";
     }
+}
+
+function verifyIssetMessage($conn, $id) {
+    $sql = "SELECT * FROM tblMessage WHERE id=:id";
+    $stmt = $conn->prepare($sql);
+    $stmt->bindParam(":id", $id, PDO::PARAM_INT);
+    $stmt->execute();
+
+    return $stmt->rowCount();
+}
+
+function returnMessageData($conn, $id) {
+    $sql = "SELECT * FROM tblMessage WHERE id=:id";
+    $stmt = $conn->prepare($sql);
+    $stmt->bindParam(":id", $_GET['id'], PDO::PARAM_INT);
+    $stmt->execute();
+
+    return $stmt->fetch(PDO::FETCH_ASSOC);
 }
 
 ?>
